@@ -4,13 +4,13 @@ export const NoteReducer = (state, action) => {
     case 'newNote': {
       return {
         ...state,
-        product: { ...state.notes, ...action.payload },
+        notes: { ...state.notes, ...action.payload },
       }
     }
     case 'deleteNote':
       return {
         ...state,
-        products: state.notes.filter((product) => product.id !== action.payload),
+        notes: state.notes.filter((note) => note.id !== action.payload),
       }
     case 'resetNotes':
       return {
