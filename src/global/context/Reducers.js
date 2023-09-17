@@ -1,5 +1,5 @@
 import { initialState } from './InitialState'
-export const buyReducer = (state, action) => {
+export const NoteReducer = (state, action) => {
   switch (action.type) {
     case 'newNote': {
       return {

@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from 'react'
 import { initialState } from './InitialState'
 import { reducer } from './Reducers'
 
-const Context = createContext({})
+export const NotesContext = createContext({})
 export default function ProviderNotes({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -13,9 +13,15 @@ export default function ProviderNotes({ children }) {
   const UserData = {
     ...state,
     setNote: (payload) => {
-      setDispatch('new', payload)
+      setDispatch('newNote', payload)
+    },
+    setDeleteNote: (payload) => {
+      setDispatch('deleteNote', payload)
+    },
+    setResetNotes: () => {
+      setDispatch('resetNotes')
     },
   }
 
-  return <Context.Provider value={UserData}>{children}</Context.Provider>
+  return <NotesContext.Provider value={UserData}>{children}</NotesContext.Provider>
 }
