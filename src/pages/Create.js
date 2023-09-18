@@ -4,8 +4,10 @@ import Layout from '../layout/Other'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import { NotesContext } from '../global/context/Context'
+import { useNavigation } from '@react-navigation/native'
 
 export default function Create({ route }) {
+  const navigation = useNavigation()
   const { setUpdateNote, setNewNote } = useContext(NotesContext)
 
   const [title, setTitle] = useState('')
@@ -46,8 +48,9 @@ export default function Create({ route }) {
   }, [title, creator, date, text, body, colorPriority])
 
   const Note = () => {
-    // if route.params.type === 'edit' then setUpdateNote else setNewNote
     if (route?.params?.type === 'edit') {
+      // if route.params.type === 'edit' then navigate to Back else navigate to Home
+      navigation.goBack()
       return setUpdateNote({
         id: route.params.item.id,
         title,
@@ -58,6 +61,8 @@ export default function Create({ route }) {
         colorPriority,
       })
     }
+    // if route.params.type === 'edit' then navigate to Back else navigate to Home
+    navigation.navigate('Home')
     return setNewNote({
       id: Math.random(),
       title,

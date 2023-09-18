@@ -7,9 +7,9 @@ import { Colors, Size } from '../constant/Constant'
 import { NotesContext } from '../global/context/Context'
 
 export default function Card({ item }) {
+  const navigation = useNavigation()
   const { modalVisible, setDeleteNote, setModalVisible, setModal } = useContext(NotesContext)
   const { width, height } = useWindowDimensions()
-  const navigation = useNavigation()
 
   // navigate to Detail screen and send item as params
   const Navigate = ({ item }) => {
@@ -20,6 +20,11 @@ export default function Card({ item }) {
   const PressCard = ({ item }) => {
     setModalVisible(!modalVisible)
     setModal(item)
+  }
+
+  // navigate to Edit screen and send item as params
+  const Edit = ({ item }) => {
+    navigation.navigate('Edit', { item, type: 'edit' })
   }
 
   return (
@@ -40,7 +45,7 @@ export default function Card({ item }) {
           style={[styles.cardHeader, { backgroundColor: item.colorPriority, height: height / 20 }]}>
           <Text style={styles.cardHeaderTitle}>{item.title}</Text>
           <View style={{ flexDirection: 'row', gap: 30 }}>
-            <TouchableOpacity onPress={() => navigation.navigate('Edit', { item })}>
+            <TouchableOpacity onPress={() => Edit({ item })}>
               <AntDesign name="edit" size={22} color={Colors.white} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setDeleteNote(item.id)}>
