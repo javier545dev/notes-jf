@@ -1,52 +1,70 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View, useWindowDimensions, TouchableOpacity } from 'react-native'
+import { useState, useContext } from 'react'
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native'
+import { AntDesign } from '@expo/vector-icons'
+
 import Layout from '../layout/Home'
 import { Colors, Size } from '../constant/Constant'
 import FloatingButton from '../components/FloatingButton'
 import Carousel from '../components/Carousel'
+import { NotesContext } from '../global/context/Context'
+import EmptyNotes from '../components/EmptyNotes'
+import ModalNote from '../components/Modal'
+import Icon from '../components/Icon'
 
 export default function Home() {
+  const { noteModal, notes, modalVisible, setModalVisible } = useContext(NotesContext)
   const { width } = useWindowDimensions()
   const [orientation, setOrientation] = useState(false)
 
   return (
     <Layout>
       <View style={styles.header}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.title}>NotesJF</Text>
-          <TouchableOpacity onPress={() => setOrientation(!orientation)}>
-            <Text style={styles.title}>Change</Text>
-          </TouchableOpacity>
-        </View>
-        <View
-          style={[
-            styles.containerCard,
-            {
-              width: width,
-            },
-          ]}>
-          <Carousel orientation={orientation} />
-        </View>
-        <FloatingButton />
+        <Text style={styles.title}>NotesJF</Text>
+        {notes.length > 0 && (
+          <View
+            style={{
+              gap: 10,
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <Icon setOrientation={setOrientation} orientation={orientation} />
+          </View>
+        )}
       </View>
+      <View
+        style={[
+          styles.body,
+          {
+            width: width,
+          },
+        ]}>
+        <ModalNote
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          noteModal={noteModal}
+        />
+        {notes.length === 0 && <EmptyNotes text="You don't have any notes, please add one" />}
+        <Carousel orientation={orientation} />
+      </View>
+      <FloatingButton screen={'Create'}>
+        <AntDesign name="plus" size={24} color="white" />
+      </FloatingButton>
     </Layout>
   )
 }
 
 const styles = StyleSheet.create({
-  containerCard: {
+  body: {
     backgroundColor: Colors.white,
     flex: 1,
   },
   header: {
-    flex: 1,
-    position: 'relative',
-  },
-  headerContainer: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingBottom: 20,
     paddingHorizontal: 50,
+    width: '100%',
   },
   title: {
     fontSize: Size.text_xxl,
