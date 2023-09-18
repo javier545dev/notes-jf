@@ -12,7 +12,6 @@ export const NoteReducer = (state, action) => {
     // update note
     case 'updateNote': {
       const newNotes = state.notes.map((note) => {
-        console.log(note.id, action.payload.id)
         if (note.id === action.payload.id) {
           return {
             ...note,

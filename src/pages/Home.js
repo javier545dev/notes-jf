@@ -20,7 +20,7 @@ export default function Home() {
     <Layout>
       <View style={styles.header}>
         <Text style={styles.title}>NotesJF</Text>
-        {notes.length > 0 && (
+        {notes.length > 1 && (
           <View
             style={{
               gap: 10,
