@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { NotesContext } from '../global/context/Context'
 import Card from './Card'
