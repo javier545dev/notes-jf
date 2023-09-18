@@ -1,8 +1,13 @@
+import { useContext } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, useWindowDimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { AntDesign } from '@expo/vector-icons'
+
 import { Colors, Size } from '../constant/Constant'
+import { NotesContext } from '../global/context/Context'
 
 export default function Card({ item }) {
+  const { modalVisible, setDeleteNote, setModalVisible, setModal } = useContext(NotesContext)
   const { width, height } = useWindowDimensions()
   const navigation = useNavigation()
 
@@ -10,8 +15,17 @@ export default function Card({ item }) {
     navigation.navigate('Detail', { item })
   }
 
+  const PressCard = ({ item }) => {
+    setModalVisible(!modalVisible)
+    setModal(item)
+  }
+
   return (
-    <TouchableOpacity key={item.id} onPress={() => Navigate({ item })} style={styles.container}>
+    <TouchableOpacity
+      key={item.id}
+      onPress={() => PressCard({ item })}
+      onLongPress={() => Navigate({ item })}
+      style={styles.container}>
       <View
         style={[
           styles.card,
@@ -23,9 +37,14 @@ export default function Card({ item }) {
         <View
           style={[styles.cardHeader, { backgroundColor: item.colorPriority, height: height / 20 }]}>
           <Text style={styles.cardHeaderTitle}>{item.title}</Text>
-          <TouchableOpacity>
-            <Text style={styles.cardHeaderTitle}>X</Text>
-          </TouchableOpacity>
+          <View style={{ flexDirection: 'row', gap: 30 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Edit', { item })}>
+              <AntDesign name="edit" size={22} color={Colors.white} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setDeleteNote(item.id)}>
+              <AntDesign name="delete" size={22} color={Colors.white} />
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={[styles.cardBody, { height: height / 5 }]}>
           <View style={styles.cardBodyContainer}>
