@@ -17,6 +17,7 @@ export default function Create({ route }) {
   const [buttonDisable, setButtonDisable] = useState(true)
 
   useEffect(() => {
+    // if route.params.type === 'edit' then set the value of the input
     if (route?.params?.type === 'edit') {
       setTitle(route.params.item.title)
       setCreator(route.params.item.creator)
@@ -29,6 +30,7 @@ export default function Create({ route }) {
   }, [route?.params?.type])
 
   useEffect(() => {
+    // if all input is filled then set buttonDisable to false
     if (
       title !== '' &&
       creator !== '' &&
@@ -44,26 +46,19 @@ export default function Create({ route }) {
   }, [title, creator, date, text, body, colorPriority])
 
   const Note = () => {
+    // if route.params.type === 'edit' then setUpdateNote else setNewNote
     if (route?.params?.type === 'edit') {
-      return UpdateNote()
+      return setUpdateNote({
+        id: route.params.item.id,
+        title,
+        creator,
+        date,
+        text,
+        body,
+        colorPriority,
+      })
     }
-    return CreateNote()
-  }
-
-  const UpdateNote = () => {
-    setUpdateNote({
-      id: route.params.item.id,
-      title,
-      creator,
-      date,
-      text,
-      body,
-      colorPriority,
-    })
-  }
-
-  const CreateNote = () => {
-    setNewNote({
+    return setNewNote({
       id: Math.random(),
       title,
       creator,

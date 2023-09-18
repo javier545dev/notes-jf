@@ -3,8 +3,8 @@ import { useNavigation } from '@react-navigation/native'
 import { Colors } from '../constant/Constant'
 
 export default function FloatingButton({ screen, children, params = {} }) {
-  const { height, width } = useWindowDimensions()
   const navigation = useNavigation()
+  const { height, width } = useWindowDimensions()
   return (
     <TouchableOpacity
       style={[

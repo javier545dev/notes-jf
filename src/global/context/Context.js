@@ -6,7 +6,7 @@ export const NotesContext = createContext({ ...initialState })
 
 export default function ProviderNotes({ children }) {
   const [state, dispatch] = useReducer(NoteReducer, initialState)
-
+  // state and setter for state global
   const UserData = {
     ...state,
     setNewNote: (payload) => dispatch({ type: 'newNote', payload }),

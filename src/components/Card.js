@@ -11,10 +11,12 @@ export default function Card({ item }) {
   const { width, height } = useWindowDimensions()
   const navigation = useNavigation()
 
+  // navigate to Detail screen and send item as params
   const Navigate = ({ item }) => {
     navigation.navigate('Detail', { item })
   }
 
+  // set modalVisible to true and set modal to item
   const PressCard = ({ item }) => {
     setModalVisible(!modalVisible)
     setModal(item)

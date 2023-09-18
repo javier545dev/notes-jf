@@ -5,7 +5,6 @@ import Card from './Card'
 
 export default function Carousel({ orientation }) {
   const { notes } = useContext(NotesContext)
-
   return (
     <FlatList
       data={notes}

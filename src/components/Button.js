@@ -1,5 +1,4 @@
 import { StyleSheet, Text, TouchableOpacity, useWindowDimensions } from 'react-native'
-import React from 'react'
 
 export default function Button({ disabled, onPress, children }) {
   const { width } = useWindowDimensions()

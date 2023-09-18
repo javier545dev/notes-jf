@@ -1,5 +1,4 @@
 import { View, Text, TextInput, StyleSheet, useWindowDimensions } from 'react-native'
-import React from 'react'
 
 export default function Input({ title, value, onChange, placeholder, multiline = false }) {
   const { width } = useWindowDimensions()
