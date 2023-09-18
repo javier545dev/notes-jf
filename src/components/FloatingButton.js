@@ -1,12 +1,21 @@
-import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native'
-import { Colors, Size } from '../constant/Constant'
+import { TouchableOpacity, StyleSheet, useWindowDimensions } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { Colors } from '../constant/Constant'
 
-const height = Dimensions.get('window').height
-
-export default function FloatingButton() {
+export default function FloatingButton({ screen, children, params = {} }) {
+  const { height, width } = useWindowDimensions()
+  const navigation = useNavigation()
   return (
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.text}>+</Text>
+    <TouchableOpacity
+      style={[
+        styles.button,
+        {
+          height: height * 0.07,
+          width: width * 0.15,
+        },
+      ]}
+      onPress={() => navigation.navigate(screen, params)}>
+      {children}
     </TouchableOpacity>
   )
 }
@@ -16,8 +25,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.black,
     borderRadius: 100,
-    bottom: 20,
-    height: height * 0.07,
+    bottom: 40,
     justifyContent: 'center',
     position: 'absolute',
     right: 20,
@@ -27,11 +35,5 @@ const styles = StyleSheet.create({
       height: 5,
     },
     shadowOpacity: 0.7,
-    width: height * 0.07,
-  },
-  text: {
-    color: Colors.white,
-    fontSize: Size.text_xxxl,
-    fontWeight: 'bold',
   },
 })
