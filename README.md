@@ -30,11 +30,11 @@ $ expo start --android
 ```
 - expo
 - react native
+- react native save area context
 - react navigation
 - react navigation stack
 - eslint
 - prettier
-
 ```
 
 # Author
