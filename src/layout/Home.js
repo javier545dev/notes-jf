@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+
 import { Colors } from '../constant/Constant'
 
 export default function Home({ children }) {
