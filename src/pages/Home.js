@@ -2,14 +2,15 @@ import { useState, useContext } from 'react'
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 
-import Layout from '../layout/Home'
-import { Colors, Size } from '../constant/Constant'
-import FloatingButton from '../components/FloatingButton'
-import Carousel from '../components/Carousel'
 import { NotesContext } from '../global/context/Context'
-import EmptyNotes from '../components/EmptyNotes'
+import { Colors, Size } from '../constant/Constant'
+
+import Layout from '../layout/Home'
+import Carousel from '../components/Carousel'
+import FloatingButton from '../components/FloatingButton'
 import ModalNote from '../components/Modal'
 import Icon from '../components/Icon'
+import EmptyNotes from '../components/EmptyNotes'
 
 export default function Home() {
   const { noteModal, notes, modalVisible, setModalVisible } = useContext(NotesContext)

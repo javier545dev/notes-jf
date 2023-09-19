@@ -1,10 +1,13 @@
 import { useContext, useEffect, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+
 import Layout from '../layout/Other'
 import Input from '../components/Input'
 import Button from '../components/Button'
+import SelectColor from '../components/SelectColor'
+
 import { NotesContext } from '../global/context/Context'
-import { useNavigation } from '@react-navigation/native'
 
 export default function Create({ route }) {
   const navigation = useNavigation()
@@ -76,22 +79,24 @@ export default function Create({ route }) {
 
   return (
     <Layout>
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <Input title="Title" value={title} onChange={setTitle} placeholder={'Title'} />
         <Input title="Creator" value={creator} onChange={setCreator} placeholder={'Creator'} />
         <Input title="Date" value={date} onChange={setDate} placeholder={'Date'} />
-        <Input
-          title="Color Priority"
-          value={colorPriority}
-          onChange={setColorPriority}
-          placeholder={'Color Priority'}
-        />
+        <SelectColor colorPriority={colorPriority} setColorPriority={setColorPriority} />
         <Input title="Text" value={text} onChange={setText} placeholder={'Text'} />
-        <Input title="Body" value={body} onChange={setBody} placeholder={'Body'} multiline={true} />
+        <Input
+          title="Body"
+          value={body}
+          onChange={setBody}
+          placeholder={'Body'}
+          multiline={true}
+          maxLength={120}
+        />
         <Button disabled={buttonDisable} onPress={Note}>
           {route?.params?.type === 'edit' ? 'Confirm' : 'Create'}
         </Button>
-      </View>
+      </ScrollView>
     </Layout>
   )
 }
@@ -100,6 +105,6 @@ const styles = StyleSheet.create({
   container: {
     gap: 20,
     paddingHorizontal: 40,
-    paddingTop: 40,
+    paddingTop: 30,
   },
 })
