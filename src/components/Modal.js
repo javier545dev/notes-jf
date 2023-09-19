@@ -5,21 +5,51 @@ export default function ModalNote({ modalVisible, setModalVisible, noteModal }) 
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>{noteModal.title}</Text>
           <View
-            style={{
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-              paddingHorizontal: 20,
-            }}>
+            style={[
+              styles.frame,
+              {
+                backgroundColor: noteModal.colorPriority,
+              },
+            ]}
+          />
+          <Text
+            style={[
+              styles.modalText,
+              {
+                fontSize: 20,
+                fontWeight: 'bold',
+                marginBottom: 15,
+              },
+            ]}>
+            {noteModal.title}
+          </Text>
+          <View style={styles.header}>
             <Text style={styles.modalText}>{noteModal.creator}</Text>
             <Text style={styles.modalText}>{noteModal.date}</Text>
           </View>
-          <Text style={styles.modalText}>{noteModal.body}</Text>
+          <Text
+            style={[
+              styles.modalText,
+              {
+                textAlign: 'justify',
+              },
+            ]}>
+            {noteModal.body}
+          </Text>
 
           <TouchableOpacity style={styles.button} onPress={() => setModalVisible(!modalVisible)}>
-            <AntDesign name="closecircleo" size={24} color="black" />
+            <AntDesign name="closecircleo" size={26} color="black" />
           </TouchableOpacity>
+          <View
+            style={[
+              styles.frame,
+              {
+                backgroundColor: noteModal.colorPriority,
+                bottom: 0,
+              },
+            ]}
+          />
         </View>
       </View>
     </Modal>
@@ -33,25 +63,14 @@ const styles = StyleSheet.create({
     padding: 10,
     position: 'absolute',
     right: 20,
-    top: 20,
+    top: 25,
   },
   centeredView: {
     alignItems: 'center',
+    elevation: 5,
     flex: 1,
     justifyContent: 'center',
     marginTop: 22,
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  modalView: {
-    backgroundColor: 'white',
-    borderRadius: 20,
-    elevation: 5,
-    margin: 20,
-    padding: 35,
-    position: 'relative',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -59,5 +78,26 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
+  },
+  frame: {
+    height: 20,
+    position: 'absolute',
+    width: '150%',
+  },
+  header: {
+    flexDirection: 'row',
+    gap: 10,
+    justifyContent: 'flex-start',
+  },
+  modalText: {
+    marginBottom: 15,
+  },
+  modalView: {
+    backgroundColor: 'white',
+    borderRadius: 20,
+    margin: 20,
+    overflow: 'hidden',
+    padding: 35,
+    position: 'relative',
   },
 })
