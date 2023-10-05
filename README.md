@@ -10,43 +10,40 @@ This project called NotesJF was made using technologies like react native / expo
 ## Images of the application
 
 
-```
-  Home
-```
+### Home
+
 
 ![Screenshot](/images/home.png)
 
-```
-  Detail
-```
+
+### Detail
+
 
 ![Screenshot](/images/detail.png)
 
-```
-  Edit
-```
+
+### Edit
+
 
 ![Screenshot](/images/edit.png)
 
-```
-  Modal
-```
+
+### Modal
+
 
 ![Screenshot](/images/modal.png)
 
-```
 
 # Functionality
 
 ```
-
 - Create notes
 - Edit notes
 - Delete notes
 - Update notes
 - Dark mode according to your cell phone settings
-
 ```
+
 
 # Initial configuration
 
