@@ -6,9 +6,9 @@ This project called NotesJF was made using technologies like react native / expo
 
 # Screenshots
 
-```
-  Images of the application
-```
+
+## Images of the application
+
 
 ```
   Home
