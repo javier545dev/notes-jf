@@ -78,6 +78,3 @@ $ expo start --android
 
 Javier Fuentes
 
-```
-
-```
